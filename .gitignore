@@ -1,0 +1,6 @@
+/.build
+/Packages
+xcuserdata/
+/.swiftpm
+/Carthage
+/StandardForm.framework.zip
