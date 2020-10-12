@@ -33,8 +33,8 @@ open class ButtonField: Field {
     open var image: UIImage? {
         didSet { tableViewCellProvider?.tableViewCell(forField: self)?.imageView?.image = image }
     }
-    open var title: String? {
-        didSet { tableViewCellProvider?.tableViewCell(forField: self)?.textLabel?.text = title }
+    open var text: String? {
+        didSet { tableViewCellProvider?.tableViewCell(forField: self)?.textLabel?.text = text }
     }
     public let disclosureIndicator: Bool
     public let appearance: Appearance
@@ -42,13 +42,13 @@ open class ButtonField: Field {
 
     public init(id: UUID = .init(),
                 image: UIImage? = nil,
-                title: String? = nil,
+                text: String? = nil,
                 disclosureIndicator: Bool = false,
                 appearance: Appearance = DefaultAppearance(),
                 selectionHandler: @escaping () -> Void) {
         self.id = id
         self.image = image
-        self.title = title
+        self.text = text
         self.disclosureIndicator = disclosureIndicator
         self.appearance = appearance
         self.selectionHandler = selectionHandler
@@ -58,7 +58,7 @@ open class ButtonField: Field {
         let reuseIdentifier = String(describing: ButtonField.self)
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) ?? .init(style: .value1, reuseIdentifier: reuseIdentifier)
         cell.imageView?.image = image
-        cell.textLabel?.text = title
+        cell.textLabel?.text = text
         cell.textLabel?.textColor = disclosureIndicator ? appearance.label : appearance.tintColor
         cell.accessoryType = disclosureIndicator ? .disclosureIndicator : .none
         return cell

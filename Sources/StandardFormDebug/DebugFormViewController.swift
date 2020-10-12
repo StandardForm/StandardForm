@@ -41,10 +41,10 @@ final class DebugFormViewController: FormViewController {
                     TextInputField(label: "Name", placeholder: "StandardForm", returnKeyType: .next),
                     EmailInputField(label: "Email", placeholder: "contact@example.com", returnKeyType: .next),
                     PasswordInputField(label: "Password", returnKeyType: .go),
-                    ButtonField(title: "Name") {
+                    ButtonField(text: "Name") {
                         print("\(Date()) ButtonField: Did Tap")
                     },
-                    ButtonField(title: "Name", disclosureIndicator: true) {
+                    ButtonField(text: "Name", disclosureIndicator: true) {
                         print("\(Date()) ButtonField: Did Tap")
                     },
                     SelectionField(text: "Toggle"),
