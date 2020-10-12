@@ -27,15 +27,18 @@ import UIKit
 
 open class DestructiveButtonField: Field {
 
-    open private(set) weak var cell: UITableViewCell?
+    open weak var tableViewCellProvider: TableViewCellProviding?
 
+    public let id: UUID
     open var title: String? {
-        didSet { cell?.textLabel?.text = title }
+        didSet { tableViewCellProvider?.tableViewCell(forField: self)?.textLabel?.text = title }
     }
     public let selectionHandler: () -> Void
 
-    public init(title: String? = nil,
+    public init(id: UUID = .init(),
+                title: String? = nil,
                 selectionHandler: @escaping () -> Void) {
+        self.id = id
         self.title = title
         self.selectionHandler = selectionHandler
     }
@@ -45,7 +48,6 @@ open class DestructiveButtonField: Field {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) ?? .init(style: .default, reuseIdentifier: reuseIdentifier)
         cell.textLabel?.text = title
         cell.textLabel?.textColor = .systemRed
-        self.cell = cell
         return cell
     }
 

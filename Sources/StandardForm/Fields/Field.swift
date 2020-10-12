@@ -27,6 +27,9 @@ import UIKit
 
 public protocol Field {
 
+    var id: UUID { get }
+    var tableViewCellProvider: TableViewCellProviding? { get set }
+
     func registerCellForCellReuseIdentifier(_ tableView: UITableView)
     func dequeueReusableCell(forTableView tableView: UITableView, atIndexPath indexPath: IndexPath) -> UITableViewCell
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)

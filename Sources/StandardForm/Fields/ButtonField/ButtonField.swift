@@ -27,23 +27,26 @@ import UIKit
 
 open class ButtonField: Field {
 
-    open private(set) weak var cell: UITableViewCell?
+    open weak var tableViewCellProvider: TableViewCellProviding?
 
+    public let id: UUID
     open var image: UIImage? {
-        didSet { cell?.imageView?.image = image }
+        didSet { tableViewCellProvider?.tableViewCell(forField: self)?.imageView?.image = image }
     }
     open var title: String? {
-        didSet { cell?.textLabel?.text = title }
+        didSet { tableViewCellProvider?.tableViewCell(forField: self)?.textLabel?.text = title }
     }
     public let disclosureIndicator: Bool
     public let appearance: Appearance
     public let selectionHandler: () -> Void
 
-    public init(image: UIImage? = nil,
+    public init(id: UUID = .init(),
+                image: UIImage? = nil,
                 title: String? = nil,
                 disclosureIndicator: Bool = false,
                 appearance: Appearance = DefaultAppearance(),
                 selectionHandler: @escaping () -> Void) {
+        self.id = id
         self.image = image
         self.title = title
         self.disclosureIndicator = disclosureIndicator
@@ -58,7 +61,6 @@ open class ButtonField: Field {
         cell.textLabel?.text = title
         cell.textLabel?.textColor = disclosureIndicator ? appearance.label : appearance.tintColor
         cell.accessoryType = disclosureIndicator ? .disclosureIndicator : .none
-        self.cell = cell
         return cell
     }
 

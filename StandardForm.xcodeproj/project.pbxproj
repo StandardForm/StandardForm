@@ -19,6 +19,7 @@
 		20A588CC97C74AE32ECF1760 /* PasswordInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32E261FA84BA08EF9F8C1B /* PasswordInputField.swift */; };
 		2AA9A1DA11F5AD380F9DB700 /* DebugFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C4D8B180C787122E82BC8 /* DebugFormViewController.swift */; };
 		2CB60809E4A39D5B14B80AB0 /* SelectionOptionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1437229CC917E0D5DA2D47B1 /* SelectionOptionField.swift */; };
+		529B925EE4641FD44136E0B7 /* TableViewCellProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C7FFAF20DA943D637CE37 /* TableViewCellProviding.swift */; };
 		552B0C28BD6E4578314AEC25 /* TextInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA329E32F70EFD223E021C84 /* TextInputField.swift */; };
 		55F47074DE1BF3024A901AC9 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2D385CD7CC534F02BDBA75 /* Appearance.swift */; };
 		575D7DFDDD2D3D8A2299556C /* NewPasswordInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B99613DB8B4EEF03ECBF99 /* NewPasswordInputField.swift */; };
@@ -31,6 +32,7 @@
 		7E7E02AA521874602CC0F6A6 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9F7F99DDEE24976287F723 /* FormViewController.swift */; };
 		7F4426F429CE7E2763378004 /* SelectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADBBF054D817D34D49BB516 /* SelectionSection.swift */; };
 		8A3B19D7AC17545D4E47D470 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9F7F99DDEE24976287F723 /* FormViewController.swift */; };
+		961899CA2ACFC2116848E716 /* TableViewCellProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37C7FFAF20DA943D637CE37 /* TableViewCellProviding.swift */; };
 		96E0132219884D239E730D55 /* DefaultAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50157473A0DA0EFA06F7FB83 /* DefaultAppearance.swift */; };
 		9A0D9D29F090C4AD9168B5EA /* EmailInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1F4AB502A14784E6660F79 /* EmailInputField.swift */; };
 		A89307BD9E00491A507DD124 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAD5AA59214ED167B3FE63C /* AppDelegate.swift */; };
@@ -89,6 +91,7 @@
 		CD127F609C8C7C60E123FE52 /* TextInputFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputFieldCell.swift; sourceTree = "<group>"; };
 		DA329E32F70EFD223E021C84 /* TextInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputField.swift; sourceTree = "<group>"; };
 		DB5C976FA556726FE329CEDD /* StandardForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StandardForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E37C7FFAF20DA943D637CE37 /* TableViewCellProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellProviding.swift; sourceTree = "<group>"; };
 		FB744D26EDAB5E1A6866F5E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -246,6 +249,7 @@
 				CC2D385CD7CC534F02BDBA75 /* Appearance.swift */,
 				50157473A0DA0EFA06F7FB83 /* DefaultAppearance.swift */,
 				CB96BE9E3FF280805D3AFD4C /* Field.swift */,
+				E37C7FFAF20DA943D637CE37 /* TableViewCellProviding.swift */,
 			);
 			path = Fields;
 			sourceTree = "<group>";
@@ -394,6 +398,7 @@
 				1FB999A135EF27ABEB9155C4 /* LabelField.swift in Sources */,
 				06123D6F063107749AD7C308 /* SelectionField.swift in Sources */,
 				73AC0C29B49079F0CE1D0CB3 /* SelectionOptionField.swift in Sources */,
+				529B925EE4641FD44136E0B7 /* TableViewCellProviding.swift in Sources */,
 				AE9DDDF51177F752C100223E /* FormContentViewController.swift in Sources */,
 				7E7E02AA521874602CC0F6A6 /* FormViewController.swift in Sources */,
 				B9CC96B3958557E3D0101BA0 /* Section.swift in Sources */,
@@ -418,6 +423,7 @@
 				0D16D95632997265487208BB /* LabelField.swift in Sources */,
 				1FB9D9B68278C7C26716A214 /* SelectionField.swift in Sources */,
 				2CB60809E4A39D5B14B80AB0 /* SelectionOptionField.swift in Sources */,
+				961899CA2ACFC2116848E716 /* TableViewCellProviding.swift in Sources */,
 				67A3277962E307B20133D588 /* FormContentViewController.swift in Sources */,
 				8A3B19D7AC17545D4E47D470 /* FormViewController.swift in Sources */,
 				126112DCD67ABD21A45D654E /* Section.swift in Sources */,
@@ -449,7 +455,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.2.4;
+				SWIFT_VERSION = 5.3.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -478,7 +484,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.2.4;
+				SWIFT_VERSION = 5.3.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -614,7 +620,7 @@
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 5.2.4;
+				SWIFT_VERSION = 5.3.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -639,7 +645,7 @@
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 5.2.4;
+				SWIFT_VERSION = 5.3.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

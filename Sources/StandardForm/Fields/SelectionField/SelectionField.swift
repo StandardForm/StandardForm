@@ -27,24 +27,27 @@ import UIKit
 
 open class SelectionField: Field {
 
-    open private(set) weak var cell: UITableViewCell?
+    open weak var tableViewCellProvider: TableViewCellProviding?
 
     open internal(set) var isSelected = false
     open var isEnabled = true {
         didSet { configureCell() }
     }
 
+    public let id: UUID
     open var text: String? {
-        didSet { cell?.textLabel?.text = text }
+        didSet { tableViewCellProvider?.tableViewCell(forField: self)?.textLabel?.text = text }
     }
     open var detailText: String? {
-        didSet { cell?.detailTextLabel?.text = detailText }
+        didSet { tableViewCellProvider?.tableViewCell(forField: self)?.detailTextLabel?.text = detailText }
     }
     public let appearance: Appearance
 
-    public init(text: String? = nil,
+    public init(id: UUID = .init(),
+                text: String? = nil,
                 detailText: String? = nil,
                 appearance: Appearance = DefaultAppearance()) {
+        self.id = id
         self.text = text
         self.detailText = detailText
         self.appearance = appearance
@@ -53,7 +56,6 @@ open class SelectionField: Field {
     open func dequeueReusableCell(forTableView tableView: UITableView, atIndexPath indexPath: IndexPath) -> UITableViewCell {
         let reuseIdentifier = String(describing: SelectionField.self)
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) ?? .init(style: .subtitle, reuseIdentifier: reuseIdentifier)
-        self.cell = cell
         cell.textLabel?.text = text
         cell.detailTextLabel?.text = detailText
         configureCell()
@@ -61,7 +63,7 @@ open class SelectionField: Field {
     }
 
     open func configureCell() {
-        guard let cell = cell else { return }
+        guard let cell = tableViewCellProvider?.tableViewCell(forField: self) else { return }
         cell.selectionStyle = isEnabled ? .default : .none
         cell.tintColor = isEnabled ? .systemBlue : .lightGray
         cell.textLabel?.textColor = isEnabled ? appearance.label : .lightGray
