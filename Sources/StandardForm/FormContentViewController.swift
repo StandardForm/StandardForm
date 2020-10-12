@@ -25,12 +25,13 @@
 
 import UIKit
 
-open class FormContentViewController: UITableViewController {
+open class FormContentViewController: UITableViewController, TableViewCellProviding {
 
     open var sections: [Section] = [] {
         didSet {
             for section in sections {
-                for field in section.fields {
+                for var field in section.fields {
+                    field.tableViewCellProvider = self
                     field.registerCellForCellReuseIdentifier(tableView)
                 }
             }
@@ -76,5 +77,19 @@ open class FormContentViewController: UITableViewController {
         view.endEditing(true)
         let field = sections[indexPath.section].fields[indexPath.row]
         field.tableView(tableView, didSelectRowAt: indexPath)
+    }
+
+    open func tableViewCell(forField field: Field) -> UITableViewCell? {
+        let targetFieldID = field.id
+
+        for (sectionIndex, section) in sections.enumerated() {
+            for (fieldIndex, field) in section.fields.enumerated() {
+                if field.id == targetFieldID {
+                    return tableView.cellForRow(at: .init(row: fieldIndex, section: sectionIndex))
+                }
+            }
+        }
+
+        return nil
     }
 }

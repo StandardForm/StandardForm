@@ -27,19 +27,22 @@ import UIKit
 
 open class LabelField: Field {
 
-    open private(set) weak var cell: UITableViewCell?
+    open weak var tableViewCellProvider: TableViewCellProviding?
 
+    public let id: UUID
     open var text: String? {
-        didSet { cell?.textLabel?.text = text }
+        didSet { tableViewCellProvider?.tableViewCell(forField: self)?.textLabel?.text = text }
     }
     open var detailText: String? {
-        didSet { cell?.detailTextLabel?.text = detailText }
+        didSet { tableViewCellProvider?.tableViewCell(forField: self)?.detailTextLabel?.text = detailText }
     }
     public let cellStyle: UITableViewCell.CellStyle
 
-    public init(text: String? = nil,
+    public init(id: UUID = .init(),
+                text: String? = nil,
                 detailText: String? = nil,
                 cellStyle: UITableViewCell.CellStyle = .value1) {
+        self.id = id
         self.text = text
         self.detailText = detailText
         self.cellStyle = cellStyle
@@ -48,7 +51,6 @@ open class LabelField: Field {
     open func dequeueReusableCell(forTableView tableView: UITableView, atIndexPath indexPath: IndexPath) -> UITableViewCell {
         let reuseIdentifier = String(describing: LabelField.self)
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) ?? .init(style: cellStyle, reuseIdentifier: reuseIdentifier)
-        self.cell = cell
         cell.textLabel?.text = text
         cell.detailTextLabel?.text = detailText
         cell.selectionStyle = .none

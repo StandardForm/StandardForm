@@ -27,16 +27,17 @@ import UIKit
 
 open class TextInputField: NSObject, Field, UITextFieldDelegate {
 
-    open private(set) weak var cell: TextInputFieldCell?
+    open weak var tableViewCellProvider: TableViewCellProviding?
 
+    public let id: UUID
     open var label: String? {
-        didSet { cell?.fieldLabel.text = label }
+        didSet { (tableViewCellProvider?.tableViewCell(forField: self) as? TextInputFieldCell)?.fieldLabel.text = label }
     }
     open var placeholder: String? {
-        didSet { cell?.textField.placeholder = placeholder }
+        didSet { (tableViewCellProvider?.tableViewCell(forField: self) as? TextInputFieldCell)?.textField.placeholder = placeholder }
     }
     open var value: String? {
-        didSet { cell?.textField.text = value }
+        didSet { (tableViewCellProvider?.tableViewCell(forField: self) as? TextInputFieldCell)?.textField.text = value }
     }
     public let autocapitalizationType: UITextAutocapitalizationType
     public let autocorrectionType: UITextAutocorrectionType
@@ -44,7 +45,8 @@ open class TextInputField: NSObject, Field, UITextFieldDelegate {
     public let appearance: Appearance
     public let returnKeyHandler: (() -> Void)?
 
-    public init(label: String? = nil,
+    public init(id: UUID = .init(),
+                label: String? = nil,
                 placeholder: String? = nil,
                 value: String? = nil,
                 autocapitalizationType: UITextAutocapitalizationType = .sentences,
@@ -52,6 +54,7 @@ open class TextInputField: NSObject, Field, UITextFieldDelegate {
                 returnKeyType: UIReturnKeyType = .default,
                 appearance: Appearance = DefaultAppearance(),
                 returnKeyHandler: (() -> Void)? = nil) {
+        self.id = id
         self.label = label
         self.placeholder = placeholder
         self.value = value
@@ -85,7 +88,6 @@ open class TextInputField: NSObject, Field, UITextFieldDelegate {
         cell.textField.addTarget(self, action: #selector(didUpdateText(_:)), for: .editingChanged)
         cell.textField.delegate = self
         cell.textField.tintColor = appearance.tintColor
-        self.cell = cell
         return cell
     }
 }

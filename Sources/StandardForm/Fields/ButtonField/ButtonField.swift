@@ -27,25 +27,33 @@ import UIKit
 
 open class ButtonField: Field {
 
-    open private(set) weak var cell: UITableViewCell?
+    open weak var tableViewCellProvider: TableViewCellProviding?
 
+    public let id: UUID
     open var image: UIImage? {
-        didSet { cell?.imageView?.image = image }
+        didSet { tableViewCellProvider?.tableViewCell(forField: self)?.imageView?.image = image }
     }
-    open var title: String? {
-        didSet { cell?.textLabel?.text = title }
+    open var text: String? {
+        didSet { tableViewCellProvider?.tableViewCell(forField: self)?.textLabel?.text = text }
+    }
+    open var detailText: String? {
+        didSet { tableViewCellProvider?.tableViewCell(forField: self)?.detailTextLabel?.text = detailText }
     }
     public let disclosureIndicator: Bool
     public let appearance: Appearance
     public let selectionHandler: () -> Void
 
-    public init(image: UIImage? = nil,
-                title: String? = nil,
+    public init(id: UUID = .init(),
+                image: UIImage? = nil,
+                text: String? = nil,
+                detailText: String? = nil,
                 disclosureIndicator: Bool = false,
                 appearance: Appearance = DefaultAppearance(),
                 selectionHandler: @escaping () -> Void) {
+        self.id = id
         self.image = image
-        self.title = title
+        self.text = text
+        self.detailText = detailText
         self.disclosureIndicator = disclosureIndicator
         self.appearance = appearance
         self.selectionHandler = selectionHandler
@@ -55,10 +63,10 @@ open class ButtonField: Field {
         let reuseIdentifier = String(describing: ButtonField.self)
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) ?? .init(style: .value1, reuseIdentifier: reuseIdentifier)
         cell.imageView?.image = image
-        cell.textLabel?.text = title
+        cell.textLabel?.text = text
+        cell.detailTextLabel?.text = detailText
         cell.textLabel?.textColor = disclosureIndicator ? appearance.label : appearance.tintColor
         cell.accessoryType = disclosureIndicator ? .disclosureIndicator : .none
-        self.cell = cell
         return cell
     }
 
