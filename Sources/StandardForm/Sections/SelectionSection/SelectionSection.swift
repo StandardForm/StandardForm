@@ -37,10 +37,10 @@ open class SelectionSection: Section {
     public func didSelect(_ field: SelectionOptionField) {
         selectedField = field
         (fields as? [SelectionOptionField])?.forEach {
-            $0.tableViewCellProvider?.tableViewCell(forField: $0)?.accessoryType = .none
+            $0.cell?.accessoryType = .none
             $0.isSelected = false
         }
-        field.tableViewCellProvider?.tableViewCell(forField: field)?.accessoryType = .checkmark
+        field.cell?.accessoryType = .checkmark
         field.isSelected = true
     }
 }

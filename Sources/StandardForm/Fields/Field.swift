@@ -28,6 +28,7 @@ import UIKit
 public protocol Field {
 
     var tableViewCellProvider: TableViewCellProviding? { get set }
+    var cell: UITableViewCell? { get }
     var id: UUID { get }
 
     func registerCellForCellReuseIdentifier(_ tableView: UITableView)
@@ -36,6 +37,10 @@ public protocol Field {
 }
 
 public extension Field {
+
+    var cell: UITableViewCell? {
+        tableViewCellProvider?.tableViewCell(forField: self)
+    }
 
     func registerCellForCellReuseIdentifier(_ tableView: UITableView) {
     }

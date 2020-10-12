@@ -31,13 +31,13 @@ open class ButtonField: Field {
 
     public let id: UUID
     open var image: UIImage? {
-        didSet { tableViewCellProvider?.tableViewCell(forField: self)?.imageView?.image = image }
+        didSet { cell?.imageView?.image = image }
     }
     open var text: String? {
-        didSet { tableViewCellProvider?.tableViewCell(forField: self)?.textLabel?.text = text }
+        didSet { cell?.textLabel?.text = text }
     }
     open var detailText: String? {
-        didSet { tableViewCellProvider?.tableViewCell(forField: self)?.detailTextLabel?.text = detailText }
+        didSet { cell?.detailTextLabel?.text = detailText }
     }
     public let disclosureIndicator: Bool
     public let appearance: Appearance
