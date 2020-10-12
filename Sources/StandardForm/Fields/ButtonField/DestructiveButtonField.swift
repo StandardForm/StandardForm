@@ -31,7 +31,7 @@ open class DestructiveButtonField: Field {
 
     public let id: UUID
     open var title: String? {
-        didSet { tableViewCellProvider?.tableViewCell(forField: self)?.textLabel?.text = title }
+        didSet { cell?.textLabel?.text = title }
     }
     public let selectionHandler: () -> Void
 

@@ -31,10 +31,10 @@ open class LabelField: Field {
 
     public let id: UUID
     open var text: String? {
-        didSet { tableViewCellProvider?.tableViewCell(forField: self)?.textLabel?.text = text }
+        didSet { cell?.textLabel?.text = text }
     }
     open var detailText: String? {
-        didSet { tableViewCellProvider?.tableViewCell(forField: self)?.detailTextLabel?.text = detailText }
+        didSet { cell?.detailTextLabel?.text = detailText }
     }
     public let cellStyle: UITableViewCell.CellStyle
 

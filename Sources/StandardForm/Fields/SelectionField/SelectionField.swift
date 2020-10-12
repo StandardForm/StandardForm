@@ -31,15 +31,15 @@ open class SelectionField: Field {
 
     open internal(set) var isSelected = false
     open var isEnabled = true {
-        didSet { configureCell(tableViewCellProvider?.tableViewCell(forField: self)) }
+        didSet { configureCell(cell) }
     }
 
     public let id: UUID
     open var text: String? {
-        didSet { tableViewCellProvider?.tableViewCell(forField: self)?.textLabel?.text = text }
+        didSet { cell?.textLabel?.text = text }
     }
     open var detailText: String? {
-        didSet { tableViewCellProvider?.tableViewCell(forField: self)?.detailTextLabel?.text = detailText }
+        didSet { cell?.detailTextLabel?.text = detailText }
     }
     public let appearance: Appearance
 
@@ -74,6 +74,6 @@ open class SelectionField: Field {
         guard isEnabled else { return }
         tableView.deselectRow(at: indexPath, animated: true)
         isSelected = !isSelected
-        configureCell(tableViewCellProvider?.tableViewCell(forField: self))
+        configureCell(cell)
     }
 }

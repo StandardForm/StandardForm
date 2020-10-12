@@ -31,13 +31,13 @@ open class TextInputField: NSObject, Field, UITextFieldDelegate {
 
     public let id: UUID
     open var label: String? {
-        didSet { (tableViewCellProvider?.tableViewCell(forField: self) as? TextInputFieldCell)?.fieldLabel.text = label }
+        didSet { (cell as? TextInputFieldCell)?.fieldLabel.text = label }
     }
     open var placeholder: String? {
-        didSet { (tableViewCellProvider?.tableViewCell(forField: self) as? TextInputFieldCell)?.textField.placeholder = placeholder }
+        didSet { (cell as? TextInputFieldCell)?.textField.placeholder = placeholder }
     }
     open var value: String? {
-        didSet { (tableViewCellProvider?.tableViewCell(forField: self) as? TextInputFieldCell)?.textField.text = value }
+        didSet { (cell as? TextInputFieldCell)?.textField.text = value }
     }
     public let autocapitalizationType: UITextAutocapitalizationType
     public let autocorrectionType: UITextAutocorrectionType
