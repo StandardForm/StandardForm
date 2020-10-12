@@ -31,7 +31,7 @@ open class SelectionField: Field {
 
     open internal(set) var isSelected = false
     open var isEnabled = true {
-        didSet { configureCell() }
+        didSet { configureCell(tableViewCellProvider?.tableViewCell(forField: self)) }
     }
 
     public let id: UUID
@@ -58,23 +58,22 @@ open class SelectionField: Field {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) ?? .init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         cell.textLabel?.text = text
         cell.detailTextLabel?.text = detailText
-        configureCell()
+        configureCell(cell)
         return cell
     }
 
-    open func configureCell() {
-        guard let cell = tableViewCellProvider?.tableViewCell(forField: self) else { return }
-        cell.selectionStyle = isEnabled ? .default : .none
-        cell.tintColor = isEnabled ? .systemBlue : .lightGray
-        cell.textLabel?.textColor = isEnabled ? appearance.label : .lightGray
-        cell.detailTextLabel?.textColor = isEnabled ? appearance.label : .lightGray
-        cell.accessoryType = isSelected ? .checkmark : .none
+    open func configureCell(_ cell: UITableViewCell?) {
+        cell?.selectionStyle = isEnabled ? .default : .none
+        cell?.tintColor = isEnabled ? .systemBlue : .lightGray
+        cell?.textLabel?.textColor = isEnabled ? appearance.label : .lightGray
+        cell?.detailTextLabel?.textColor = isEnabled ? appearance.label : .lightGray
+        cell?.accessoryType = isSelected ? .checkmark : .none
     }
 
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard isEnabled else { return }
         tableView.deselectRow(at: indexPath, animated: true)
         isSelected = !isSelected
-        configureCell()
+        configureCell(tableViewCellProvider?.tableViewCell(forField: self))
     }
 }
