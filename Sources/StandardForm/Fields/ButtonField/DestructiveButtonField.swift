@@ -30,23 +30,23 @@ open class DestructiveButtonField: Field {
     open weak var tableViewCellProvider: TableViewCellProviding?
 
     public let id: UUID
-    open var title: String? {
-        didSet { cell?.textLabel?.text = title }
+    open var text: String? {
+        didSet { cell?.textLabel?.text = text }
     }
     public let selectionHandler: () -> Void
 
     public init(id: UUID = .init(),
-                title: String? = nil,
+                text: String? = nil,
                 selectionHandler: @escaping () -> Void) {
         self.id = id
-        self.title = title
+        self.text = text
         self.selectionHandler = selectionHandler
     }
 
     open func dequeueReusableCell(forTableView tableView: UITableView, atIndexPath indexPath: IndexPath) -> UITableViewCell {
         let reuseIdentifier = String(describing: ButtonField.self)
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) ?? .init(style: .default, reuseIdentifier: reuseIdentifier)
-        cell.textLabel?.text = title
+        cell.textLabel?.text = text
         cell.textLabel?.textColor = .systemRed
         return cell
     }
