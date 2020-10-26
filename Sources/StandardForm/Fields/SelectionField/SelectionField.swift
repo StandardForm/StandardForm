@@ -64,7 +64,7 @@ open class SelectionField: Field {
 
     open func configureCell(_ cell: UITableViewCell?) {
         cell?.selectionStyle = isEnabled ? .default : .none
-        cell?.tintColor = isEnabled ? .systemBlue : .lightGray
+        cell?.tintColor = isEnabled ? appearance.tintColor : .lightGray
         cell?.textLabel?.textColor = isEnabled ? appearance.label : .lightGray
         cell?.detailTextLabel?.textColor = isEnabled ? appearance.label : .lightGray
         cell?.accessoryType = isSelected ? .checkmark : .none
