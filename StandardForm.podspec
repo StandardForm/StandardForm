@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name     = 'StandardForm'
-  spec.version  = '0.1.3'
+  spec.version  = '0.1.4'
   spec.license  = { :type => 'MIT', :file => 'LICENSE' }
   spec.homepage = 'https://github.com/StandardForm/StandardForm'
   spec.authors  = { 'Jason Nam' => 'contact@jasonnam.com' }
