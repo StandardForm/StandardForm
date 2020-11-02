@@ -29,7 +29,9 @@ open class SelectionField: Field {
 
     open weak var tableViewCellProvider: TableViewCellProviding?
 
-    open internal(set) var isSelected = false
+    open var isSelected = false {
+        didSet { configureCell(cell) }
+    }
     open var isEnabled = true {
         didSet { configureCell(cell) }
     }
